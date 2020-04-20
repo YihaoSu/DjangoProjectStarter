@@ -1,5 +1,5 @@
 # Django
-Django==2.2.5
+Django==2.2.10
 
 # Environment variables configuration
 django-environ==0.4.5
