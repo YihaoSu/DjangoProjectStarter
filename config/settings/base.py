@@ -75,7 +75,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # See: https://docs.djangoproject.com/en/3.2/ref/settings/#dirs
         'DIRS': [str(APPS_DIR / 'templates')],
-        'APP_DIRS': True,
         'OPTIONS': {
             # https://docs.djangoproject.com/en/3.2/ref/templates/api/#loader-types
             'loaders': [
@@ -103,7 +102,14 @@ TEMPLATES = [
 # Uses django-environ to accept uri format
 # See: https://django-environ.readthedocs.io/en/latest/#supported-types
 DATABASES = {
-    'default': env.db('DATABASE_URL'),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env.str('POSTGRES_DB'),
+        'USER': env.str('POSTGRES_USER'),
+        'PASSWORD': env.str('POSTGRES_PASSWORD'),
+        'HOST': env.str('POSTGRES_HOST'),
+        'PORT': env.str('POSTGRES_PORT'),
+    },
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 

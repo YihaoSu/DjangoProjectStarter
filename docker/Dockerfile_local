@@ -1,0 +1,15 @@
+FROM python:3.9
+
+ARG APP_HOME=/app
+
+ENV TZ=Asia/Taipei
+
+WORKDIR ${APP_HOME}
+
+COPY . ${APP_HOME}
+RUN pip install --no-cache-dir -r ./requirements/local.txt
+
+COPY docker/entrypoint_local.sh .
+
+RUN chmod +x entrypoint_local.sh
+ENTRYPOINT ["./entrypoint_local.sh"]

@@ -17,8 +17,28 @@
 
 * [dot_env_file_template](https://github.com/YihaoSu/DjangoProjectStarter/blob/master/dot_env_file_template): 環境變數.env檔模板，請依據你的開發環境修改、擴展檔案中的設定(資料庫帳密等等)，並更名為.env ，為了安全性請務必更改模板中的設定值，且不要將本地端/正式機中的.env檔上傳到GitHub，請參考[Django-environ的文件](https://django-environ.readthedocs.io/en/latest/)。
 
+## 在本地端的開發(使用Docker)
+1. 複製dot_env_file_template檔為.env檔並調整其中的設定值(DJANGO_SECRET_KEY、PostgreSQL帳密等等)
+```shell
+cp dot_env_file_template .env
+```
 
-## 使用方式  - 建立本地端的開發環境
+2. 建立Docker image
+```shell
+docker-compose -f local.yaml build
+```
+
+3. 啟用服務
+```shell
+docker-compose -f local.yaml up -d
+```
+
+4. 創建超級管理員帳號
+```shell
+docker-compose -f local.yaml run --rm django python manage.py createsuperuser
+```
+
+## 在本地端的開發(不使用Docker)
 1.  下載此專案，並將DjangoProjectStarter/及starter/目錄更名為符合你的專案的名稱，並修改config/settings/
 /base.py檔案中的[APPS_DIR變數的值](https://github.com/YihaoSu/DjangoProjectStarter/blob/master/config/settings/base.py#L8)(將starter更名)。 
 ```shell

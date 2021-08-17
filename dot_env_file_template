@@ -3,7 +3,9 @@
 # SECRET_KEY
 DJANGO_SECRET_KEY=dV8IqhR6uGi80prymwzdH2G8hITQAVWiTxSAZ3gUQt4dm7YRMyIxfzUuDL1qQmrB
 
-# DATABASE
-# DATABASE_URL設定值寫法 mysql://USER:PASSWORD@HOST:PORT/NAME
-# See: https://github.com/kennethreitz/dj-database-url
-DATABASE_URL=postgres://webdev:123456789@localhost:3306/testdb
+# PostgreSQL DATABASE
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
