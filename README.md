@@ -38,6 +38,23 @@ docker-compose -f local.yaml up -d
 docker-compose -f local.yaml run --rm django python manage.py createsuperuser
 ```
 
+* 創建新的APP
+```shell
+docker-compose -f local.yaml exec django python manage.py startapp appname
+docker-compose -f local.yaml exec django mv appname starter
+```
+
+* 建立model
+```shell
+docker-compose -f local.yaml exec django python manage.py makemigrations
+docker-compose -f local.yaml exec django python manage.py migrate
+```
+
+* 查看logs
+```shell
+docker-compose -f local.yaml logs -f
+```
+
 ## 在production機佈署(使用Docker)
 1. 複製dot_env_file_template檔為.env檔並調整其中的設定值(DJANGO_SECRET_KEY、PostgreSQL帳密、DJANGO_ALLOWED_HOSTS等等)
 ```shell
@@ -59,6 +76,11 @@ docker-compose -f production.yaml up -d
 5. 創建超級管理員帳號
 ```shell
 docker-compose -f production.yaml run --rm django python manage.py createsuperuser
+```
+
+* 查看logs
+```shell
+docker-compose -f production.yaml logs -f
 ```
 
 ## 在本地端的開發(不使用Docker)
