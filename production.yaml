@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  django:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile_production
+    depends_on:
+      - postgres
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/uploads
+    env_file: .env
+
+  postgres:
+    image: postgres:latest
+    volumes:
+      - production_postgres_data:/var/lib/postgresql/data
+    env_file: .env
+
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile_nginx
+    ports:
+      - "8000:80"
+    depends_on:
+      - django
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/uploads
+
+volumes:
+  production_postgres_data: {}
+  static_volume:
+  media_volume:

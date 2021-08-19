@@ -1,0 +1,18 @@
+FROM python:3.9
+
+ARG APP_HOME=/app
+ARG PROJECT_NAME=starter
+
+ENV TZ=Asia/Taipei
+
+WORKDIR ${APP_HOME}
+
+RUN mkdir -p ./${PROJECT_NAME}/static
+
+COPY . ${APP_HOME}
+RUN pip install --no-cache-dir -r ./requirements/production.txt
+
+COPY docker/entrypoint_production.sh .
+
+RUN chmod +x entrypoint_production.sh
+ENTRYPOINT ["./entrypoint_production.sh"]

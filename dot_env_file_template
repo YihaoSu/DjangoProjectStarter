@@ -9,3 +9,9 @@ POSTGRES_PORT=5432
 POSTGRES_DB=postgres
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
+
+
+# For production env
+--------------------
+# DJANGO_SETTINGS_MODULE=config.settings.production
+# DJANGO_ALLOWED_HOSTS=*
